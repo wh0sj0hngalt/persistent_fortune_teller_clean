@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get("/",        { :controller => "fortunes", :action => "lucky_numbers" })
+  get("/",        { :controller => "fortunes", :action => "lucky" })
 
-  get("/lucky",   { :controller => "fortunes", :action => "lucky_numbers" })
-  get("/unlucky", { :controller => "fortunes", :action => "unlucky_numbers" })
+  get("/lucky_numbers",   { :controller => "fortunes", :action => "lucky" })
+  get("/unlucky_numbers", { :controller => "fortunes", :action => "unlucky" })
 
   # PART 1: STATIC ROUTES
   # =====================
