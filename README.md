@@ -38,9 +38,33 @@ will retrieve what they typed after the slash in this case (assuming that in you
 
 So far so good, but what we really need is the fortune to be dynamically printed in the view along with the name of the sign. To do this, you are going to have to pull the info from somewhere.
 
-I've already prepared the info for you. In this Rails app, you have access to a class called `Zodiac` that I have created (don't worry about how it works for now - assume it is pulling data from an API or a CSV).
+I've already prepared the info for you. In this Rails app, you have access to a class called `Zodiac` that I have created (**don't worry about how it works for now - assume it is pulling data from an API or a CSV**).
 
-**Available methods:** You can do `Zodiac.all` to retrieve an `Array` of `Zodiac` instances:
+**Available methods:** 
+
+
+You can look up single zodiac, given a search criterion, using the `.find_by` method:
+
+    2.1.3 :002 > Zodiac.find_by({ :sign => "leo" })
+     =>
+    #<Zodiac:0x007fd782f8d548 @creature="lion", @sign="leo", @fortune="Success on all levels is filling your life and making you feel absolutely wonderful, Leo. The downside of this is that you might be a little too conscientious. Are you putting in a lot of extra hours? Be discriminating about this and don't work harder than necessary. You could get stressed to the point of taxing your strength too much, and that won't help you. Pace yourself.">
+
+or
+
+    2.1.3 :002 > Zodiac.find_by({ :creature => "lion" })
+     =>
+    #<Zodiac:0x007fd782f8d548 @creature="lion", @sign="leo", @fortune="Success on all levels is filling your life and making you feel absolutely wonderful, Leo. The downside of this is that you might be a little too conscientious. Are you putting in a lot of extra hours? Be discriminating about this and don't work harder than necessary. You could get stressed to the point of taxing your strength too much, and that won't help you. Pace yourself.">
+
+As you can see, each `Zodiac` object has three attributes -- creature, sign, and fortune.
+
+Once you have a single `Zodiac` instance, you can access its individual attributes like so:
+
+    2.1.3 :003 > z = Zodiac.find_by({ :sign => "leo" })
+    2.1.3 :004 > z.fortune
+     =>
+    "Success on all levels is filling your life and making you feel absolutely wonderful, Leo. The downside of this is that you might be a little too conscientious. Are you putting in a lot of extra hours? Be discriminating about this and don't work harder than necessary. You could get stressed to the point of taxing your strength too much, and that won't help you. Pace yourself."
+
+You can also do `Zodiac.all` to retrieve an `Array` of all `Zodiac` instances:
 
     2.1.3 :001 > Zodiac.all
      =>
@@ -62,27 +86,6 @@ I've already prepared the info for you. In this Rails app, you have access to a 
 
       etc.
 
-
-As you can see, each `Zodiac` object has three attributes -- creature, sign, and fortune.
-
-You can also look up single row, given a search criterion, using the `.find_by` method:
-
-    2.1.3 :002 > Zodiac.find_by({ :sign => "leo" })
-     =>
-    #<Zodiac:0x007fd782f8d548 @creature="lion", @sign="leo", @fortune="Success on all levels is filling your life and making you feel absolutely wonderful, Leo. The downside of this is that you might be a little too conscientious. Are you putting in a lot of extra hours? Be discriminating about this and don't work harder than necessary. You could get stressed to the point of taxing your strength too much, and that won't help you. Pace yourself.">
-
-or
-
-    2.1.3 :002 > Zodiac.find_by({ :creature => "lion" })
-     =>
-    #<Zodiac:0x007fd782f8d548 @creature="lion", @sign="leo", @fortune="Success on all levels is filling your life and making you feel absolutely wonderful, Leo. The downside of this is that you might be a little too conscientious. Are you putting in a lot of extra hours? Be discriminating about this and don't work harder than necessary. You could get stressed to the point of taxing your strength too much, and that won't help you. Pace yourself.">
-
-Once you have a single `Zodiac` instance, you can access its individual attributes like so:
-
-    2.1.3 :003 > z = Zodiac.find_by({ :sign => "leo" })
-    2.1.3 :004 > z.fortune
-     =>
-    "Success on all levels is filling your life and making you feel absolutely wonderful, Leo. The downside of this is that you might be a little too conscientious. Are you putting in a lot of extra hours? Be discriminating about this and don't work harder than necessary. You could get stressed to the point of taxing your strength too much, and that won't help you. Pace yourself."
 
 **YOUR JOB:** In the `ZodiacsController#sign` action, look up the appropriate zodiac using the user input from the `params` hash. Display the corresponding fortune in the view template.
 
