@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 
   get("/signs/:zebra",         { :controller => "zodiacs", :action => "sign" })
 
+  get("/horoscope", { :controller => "zodiacs", :action => "new_form" })
+
+  get("/process_form", { :controller => "zodiacs", :action => "add_row" })
+
 
   # get("/creatures/:the_creature", { :controller => "zodiacs", :action => "creature" })
 end
