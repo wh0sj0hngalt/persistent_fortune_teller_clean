@@ -12,17 +12,9 @@ First **fork** and *then* clone this repository. Open up the entire folder in Su
 
 If it worked, you should be able to navigate to [http://localhost:3000](http://localhost:3000) and see something there. If it didn't work, make sure you don't have any old servers running in other tabs or windows.
 
-### Part 1: Static routes
+## Part 1: Make it dynamic
 
-I've added a list of nav links to [http://localhost:3000/zodiacs/leo](http://localhost:3000/zodiacs/leo), [http://localhost:3000/zodiacs/cancer](http://localhost:3000/zodiacs/cancer), etc.
-
-Currently, none of them work. In `routes.rb`, uncomment each one *one at a time* and make it work. I've planted at least one bug into each RCAV.
-
-**YOUR JOB:** Debug all 12 RCAVs.
-
-### Part 2: DRY it up
-
-Let's do the zodiacs a different way; with a single dynamic route that can handle all 12 signs.
+Let's do the zodiacs with a single dynamic route that can handle all 12 signs.
 
 #### Dynamic routes
 
@@ -121,3 +113,10 @@ In other words, these URLs will all work and display both the sign and fortune w
 
 using a second flexible, smart RCAV.
 
+Your goal is to make your app work like [this target](https://fortune-teller-target.herokuapp.com).
+
+## Part 2: Make it persistent
+
+Let's now learn how to use a *database* to store the zodiac info, so that we can update it each day through a form and the index/show actions will automatically use the updated info.
+
+[CRUD with Ruby Cheatsheet](https://gist.github.com/rbetina/bb6336ead63080be2ff4)
